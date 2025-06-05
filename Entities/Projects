@@ -1,0 +1,73 @@
+{
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Project title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief project description"
+    },
+    "detailed_description": {
+      "type": "string",
+      "description": "Detailed project description"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "web",
+        "mobile",
+        "design",
+        "software",
+        "other"
+      ],
+      "default": "web",
+      "description": "Project category"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "in_progress",
+        "planned"
+      ],
+      "default": "completed",
+      "description": "Project status"
+    },
+    "technologies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Technologies used"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this project is featured"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Main project image"
+    },
+    "demo_url": {
+      "type": "string",
+      "description": "Live demo URL"
+    },
+    "github_url": {
+      "type": "string",
+      "description": "GitHub repository URL"
+    },
+    "completion_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Project completion date"
+    }
+  },
+  "required": [
+    "title",
+    "description"
+  ]
+}

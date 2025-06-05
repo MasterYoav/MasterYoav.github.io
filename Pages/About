@@ -1,0 +1,235 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Download, MapPin, Calendar, Award, Heart, Code, Palette, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export default function About() {
+  const skills = [
+    { name: "Frontend Development", level: 95, icon: Code },
+    { name: "UI/UX Design", level: 88, icon: Palette },
+    { name: "Backend Development", level: 82, icon: Zap },
+    { name: "Mobile Development", level: 78, icon: Code },
+  ];
+
+  const experiences = [
+    {
+      title: "Senior Full Stack Developer",
+      company: "Tech Innovation Inc.",
+      period: "2022 - Present",
+      description: "Leading development of scalable web applications and mentoring junior developers."
+    },
+    {
+      title: "Frontend Developer",
+      company: "Digital Solutions Ltd.",
+      period: "2020 - 2022",
+      description: "Developed responsive web applications using React and modern frontend technologies."
+    },
+    {
+      title: "Junior Developer",
+      company: "StartUp Hub",
+      period: "2019 - 2020",
+      description: "Built and maintained various client projects while learning industry best practices."
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-5xl font-bold text-gray-900 mb-6">
+                About Me
+              </h1>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                I'm a passionate full-stack developer and designer with over 5 years of experience 
+                creating digital solutions that make a difference. I believe in the power of clean code, 
+                beautiful design, and user-centered thinking.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mb-8">
+                <div className="flex items-center gap-2 text-gray-600">
+                  <MapPin className="w-5 h-5" />
+                  <span>San Francisco, CA</span>
+                </div>
+                <div className="flex items-center gap-2 text-gray-600">
+                  <Calendar className="w-5 h-5" />
+                  <span>Available for projects</span>
+                </div>
+              </div>
+
+              <Button className="bg-gray-900 text-white hover:bg-gray-800 flex items-center gap-2">
+                <Download className="w-5 h-5" />
+                Download Resume
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
+                <div className="w-64 h-64 bg-gray-300 rounded-full flex items-center justify-center">
+                  <span className="text-6xl font-bold text-gray-500">JP</span>
+                </div>
+              </div>
+              
+              {/* Floating Elements */}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg p-4"
+              >
+                <Code className="w-8 h-8 text-blue-600" />
+              </motion.div>
+              
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg p-4"
+              >
+                <Heart className="w-8 h-8 text-red-500" />
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Skills & Expertise</h2>
+            <p className="text-xl text-gray-600">
+              Technologies and tools I work with to bring ideas to life
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-xl p-6 shadow-lg"
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 bg-blue-100 rounded-lg">
+                    <skill.icon className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-900">{skill.name}</h3>
+                    <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${skill.level}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full"
+                      />
+                    </div>
+                  </div>
+                  <span className="text-sm font-medium text-gray-600">{skill.level}%</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Experience</h2>
+            <p className="text-xl text-gray-600">
+              My professional journey and key milestones
+            </p>
+          </motion.div>
+
+          <div className="space-y-8">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-gray-50 rounded-xl p-8"
+              >
+                <div className="flex flex-col md:flex-row md:items-center gap-4">
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">{exp.title}</h3>
+                    <p className="text-blue-600 font-semibold mb-2">{exp.company}</p>
+                    <p className="text-gray-600">{exp.description}</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                      {exp.period}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Personal Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Beyond Code</h2>
+            <p className="text-xl text-gray-600">
+              When I'm not coding, you'll find me exploring new technologies, 
+              contributing to open source projects, or enjoying the great outdoors.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center p-6"
+            >
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Award className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Continuous Learning</h3>
+              <p className="text-gray-600">
+                Always exploring new technologies and methodologies to stay at the forefront of development.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+ 

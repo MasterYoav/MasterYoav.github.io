@@ -1,0 +1,133 @@
+import React, { useState, useEffect } from "react";
+import { Project } from "@/entities/Project";
+import { Link } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+import { motion } from "framer-motion";
+import { ArrowRight, ExternalLink, Github, Star, Calendar } from "lucide-react";
+import { format } from "date-fns";
+
+import HeroSection from "../components/portfolio/HeroSection";
+import FeaturedProjects from "../components/portfolio/FeaturedProjects";
+import ProjectCard from "../components/portfolio/ProjectCard";
+
+export default function Portfolio() {
+  const [projects, setProjects] = useState([]);
+  const [featuredProjects, setFeaturedProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    loadProjects();
+  }, []);
+
+  const loadProjects = async () => {
+    setIsLoading(true);
+    const allProjects = await Project.list("-completion_date");
+    setProjects(allProjects);
+    setFeaturedProjects(allProjects.filter(p => p.featured).slice(0, 3));
+    setIsLoading(false);
+  };
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <HeroSection />
+
+      {/* Featured Projects */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Featured Projects
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              A selection of my most impactful work, showcasing creativity, 
+              technical expertise, and attention to detail.
+            </p>
+          </motion.div>
+
+          <FeaturedProjects projects={featuredProjects} isLoading={isLoading} />
+
+          {/* View All Projects Link */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-16"
+          >
+            <Link
+              to={createPageUrl("Projects")}
+              className="inline-flex items-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 hover:scale-105"
+            >
+              View All Projects
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Recent Work */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Recent Work
+            </h2>
+            <p className="text-xl text-gray-600">
+              Latest projects and experiments
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.slice(0, 6).map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                isLoading={isLoading}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-24 bg-gradient-to-r from-blue-600 to-purple-600">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl font-bold text-white mb-6">
+              Ready to Start a Project?
+            </h2>
+            <p className="text-xl text-blue-100 mb-8">
+              Let's collaborate and bring your ideas to life with exceptional design and development.
+            </p>
+            <Link
+              to={createPageUrl("Contact")}
+              className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-50 transition-all duration-300 hover:scale-105"
+            >
+              Get In Touch
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
