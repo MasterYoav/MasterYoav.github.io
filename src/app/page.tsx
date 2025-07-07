@@ -748,21 +748,22 @@ export default function Home() {
               Featured Projects
             </motion.h2>
             
-            <div className="grid grid-cols-4 gap-6">
+            {/* Responsive Grid - Mobile-first approach */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {loading ? (
                 Array(6).fill(0).map((_, index) => (
                   <motion.div 
                     key={index} 
-                    className="glass rounded-xl overflow-hidden skeleton aspect-square"
+                    className="glass rounded-xl overflow-hidden skeleton min-h-[280px] sm:min-h-[320px]"
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <div className="p-2 sm:p-3 md:p-4 lg:p-6 h-full flex flex-col justify-center items-center">
-                      <div className="h-3 sm:h-4 bg-slate-700 rounded mb-2 sm:mb-3 w-3/4"></div>
-                      <div className="h-2 sm:h-3 bg-slate-700 rounded mb-2 sm:mb-4 flex-1 w-full"></div>
+                    <div className="p-4 sm:p-6 h-full flex flex-col justify-center items-center">
+                      <div className="h-4 bg-slate-700 rounded mb-3 w-3/4"></div>
+                      <div className="h-3 bg-slate-700 rounded mb-4 flex-1 w-full"></div>
                       <div className="flex gap-2 mt-auto">
-                        <div className="h-4 sm:h-6 w-12 sm:w-16 bg-slate-700 rounded-full"></div>
+                        <div className="h-6 w-16 bg-slate-700 rounded-full"></div>
                       </div>
                     </div>
                   </motion.div>
@@ -771,62 +772,70 @@ export default function Home() {
                 projects.map((project, index) => (
                   <motion.div
                     key={project.title}
-                    className="group glass rounded-xl overflow-hidden cursor-pointer interactive aspect-square relative"
+                    className="group glass rounded-xl overflow-hidden cursor-pointer interactive min-h-[280px] sm:min-h-[320px] relative"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1, duration: 0.6 }}
                     viewport={{ once: true }}
                     whileHover={{ 
-                      scale: 1.05,
+                      scale: 1.02,
                       boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.4)"
                     }}
                   >
-                    {/* Stars indicator - top left - responsive */}
+                    {/* Stars indicator - top left with proper spacing */}
                     {project.stars > 0 && (
                       <motion.div 
-                        className="absolute top-1 sm:top-2 md:top-3 left-1 sm:left-2 md:left-3 z-10 bg-gradient-to-r from-yellow-400 to-orange-400 text-slate-900 px-1 sm:px-2 py-1 rounded-full text-xs font-bold flex items-center shadow-lg"
+                        className="absolute top-3 left-3 z-10 bg-gradient-to-r from-yellow-400 to-orange-400 text-slate-900 px-2 py-1 rounded-full text-xs font-bold flex items-center shadow-lg"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ delay: 0.2 + index * 0.1 }}
                       >
-                        <Star size={10} className="mr-1 sm:mr-1 fill-current" />
-                        <span className="text-xs">{project.stars}</span>
+                        <Star size={12} className="mr-1 fill-current" />
+                        <span>{project.stars}</span>
                       </motion.div>
                     )}
 
-                    {/* Github action button - top right, visible on hover - responsive */}
-                    <div className="absolute top-1 sm:top-2 md:top-3 right-1 sm:right-2 md:right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    {/* Github button - smaller and positioned to avoid collision */}
+                    <div className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                       <motion.a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="glass border-2 border-green-400 text-green-400 hover:bg-green-400 hover:text-white p-2 rounded-full transition-all duration-300 inline-flex items-center justify-center"
+                        className="glass border border-green-400 text-green-400 hover:bg-green-400 hover:text-white p-1.5 rounded-full transition-all duration-300 inline-flex items-center justify-center"
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         whileTap={{ scale: 0.9 }}
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        <Github size={16} />
+                        <Github size={14} />
                       </motion.a>
                     </div>
                     
-                    {/* Content - Responsive and Centered with proper spacing to avoid collision */}
-                    <div className="p-2 sm:p-3 md:p-4 lg:p-6 h-full flex flex-col justify-center items-center text-center">
-                      {/* Add top margin to prevent collision with stars badge */}
-                      <div className="flex-1 flex flex-col justify-center items-center w-full mt-6 sm:mt-8 md:mt-6 lg:mt-4">
-                        <h3 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-slate-100 mb-1 sm:mb-2 md:mb-3 line-clamp-2 leading-tight px-2">{project.title}</h3>
-                        <p className="text-slate-300 mb-2 sm:mb-3 md:mb-4 text-xs sm:text-xs md:text-sm line-clamp-3 leading-relaxed px-2">{project.description}</p>
+                    {/* Content with proper spacing and sizing */}
+                    <div className="p-4 sm:p-6 h-full flex flex-col">
+                      {/* Title section with sufficient top margin */}
+                      <div className="mt-8 mb-4 flex-1">
+                        <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-slate-100 mb-3 leading-tight">
+                          {project.title}
+                        </h3>
+                        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-4">
+                          {project.description || "No description available"}
+                        </p>
                         
-                        {/* Only show primary language, no duplicates */}
+                        {/* Language badge */}
                         {project.language && (
-                          <div className="mb-1 sm:mb-2 md:mb-3">
-                            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-2 sm:px-2 md:px-3 py-1 rounded-full text-xs sm:text-xs md:text-sm glass inline-block">
+                          <div className="mb-4">
+                            <span className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-1.5 rounded-full text-xs font-medium glass inline-block">
                               {project.language}
                             </span>
                           </div>
                         )}
                       </div>
                       
+                      {/* Updated date at bottom */}
                       {project.updated && (
-                        <p className="text-slate-400 text-xs sm:text-xs md:text-xs mt-auto">Updated: {project.updated}</p>
+                        <p className="text-slate-400 text-xs mt-auto pt-2 border-t border-slate-700/50">
+                          Updated: {project.updated}
+                        </p>
                       )}
                     </div>
                   </motion.div>
