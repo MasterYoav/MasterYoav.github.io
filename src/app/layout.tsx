@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Yoav - Interactive Portfolio',
+  title: 'Yoav Peretz',
   description: 'Full-Stack Developer & Creative Technologist - Building innovative digital experiences with code and creativity',
   keywords: ['portfolio', 'developer', 'full-stack', 'react', 'next.js', 'javascript', 'typescript'],
   authors: [{ name: 'Yoav' }],
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://your-portfolio-url.com',
-    title: 'Yoav - Interactive Portfolio',
+    title: 'Yoav Peretz',
     description: 'Full-Stack Developer & Creative Technologist - Building innovative digital experiences',
     siteName: 'Yoav Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Yoav - Interactive Portfolio',
+    title: 'Yoav Peretz',
     description: 'Full-Stack Developer & Creative Technologist',
     creator: '@your-twitter-handle',
   },
