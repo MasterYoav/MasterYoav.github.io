@@ -37,13 +37,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="mb-8"
             >
-              <Image
-                src="/logo.png"
-                alt="YP Logo"
-                width={120}
-                height={120}
-                className="mx-auto"
-              />
+            
             </motion.div>
             <motion.h1
               className="text-4xl sm:text-6xl font-bold mb-6"
