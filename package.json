@@ -10,6 +10,7 @@
     "deploy": "npm run build && gh-pages -d out"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@heroicons/react": "^2.2.0",
     "@react-three/drei": "^9.88.0",
     "@react-three/fiber": "^8.15.11",

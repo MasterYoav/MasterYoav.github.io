@@ -2,6 +2,14 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+
+// EmailJS Setup Instructions:
+// 1. Sign up at https://www.emailjs.com/
+// 2. Create an email service and get your Service ID
+// 3. Create an email template and get your Template ID
+// 4. Get your Public Key from Account → API Keys
+// 5. Replace the placeholder values below with your actual IDs
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -16,15 +24,22 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // Initialize EmailJS with your public key
+      emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your actual public key
+      
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your service ID
+        'YOUR_TEMPLATE_ID', // Replace with your template ID
+        {
+          from_name: formData.fullName,
+          from_email: formData.email,
+          to_name: 'Your Name', // Replace with your name
+          message: `New contact from ${formData.fullName} (${formData.email})`,
+        }
+      );
 
-      if (!response.ok) throw new Error('Failed to send message');
+      if (response.status !== 200) throw new Error('Failed to send message');
       
       setSubmitStatus('success');
       setFormData({ fullName: '', email: '' });
