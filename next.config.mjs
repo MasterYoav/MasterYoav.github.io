@@ -3,6 +3,8 @@ const nextConfig = {
   // Optimize development performance
   reactStrictMode: true,
   poweredByHeader: false,
+  // Enable static export
+  output: 'export',
   // Optimize module compilation
   onDemandEntries: {
     // Period (in ms) where the server will keep pages in the buffer
@@ -17,4 +19,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig; 
+export default nextConfig;
