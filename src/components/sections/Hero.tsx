@@ -1,25 +1,25 @@
 'use client';
 
-import { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Preload } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import HeroScene from '../3d/HeroScene';
+import RippleGrid from '@/components/backgrounds/RippleGrid';
+import OrbButton from '@/components/ui/OrbButton';
 
+/**
+ * Hero Section Component
+ * 
+ * This component displays the main hero section with:
+ * - RippleGrid animated background
+ * - Animated text elements
+ * - OrbButton for call-to-action
+ * 
+ * @component
+ * @returns {JSX.Element} The Hero section
+ */
 export default function Hero() {
   return (
-    <section id="hero" className="h-screen relative">
-      {/* 3D Canvas */}
-      <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        className="w-full h-full"
-      >
-        <Suspense fallback={null}>
-          <HeroScene />
-          <OrbitControls enableZoom={false} />
-          <Preload all />
-        </Suspense>
-      </Canvas>
+    <section id="hero" className="h-screen relative overflow-hidden">
+      {/* Ripple Grid Background */}
+      <RippleGrid />
 
       {/* Text Overlay */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -50,13 +50,11 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
+              className="pointer-events-auto"
             >
-              <a
-                href="#about"
-                className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 pointer-events-auto shadow-lg"
-              >
+              <OrbButton href="#about">
                 Explore My Work
-              </a>
+              </OrbButton>
             </motion.div>
           </motion.div>
         </div>

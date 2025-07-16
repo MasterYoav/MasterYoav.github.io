@@ -2,8 +2,24 @@
 
 import { motion } from 'framer-motion';
 import { FaCode, FaLightbulb, FaRocket, FaUsers } from 'react-icons/fa';
+import Iridescence from '@/components/backgrounds/Iridescence';
 
+/**
+ * About Section Component
+ * 
+ * Displays information about the developer including:
+ * - Personal introduction with iridescent background
+ * - Experience statistics
+ * - Core values/features
+ * 
+ * @component
+ * @returns {JSX.Element} The About section
+ */
 export default function About() {
+  /**
+   * Features/values array
+   * Each item represents a core value or skill with an icon and description
+   */
   const features = [
     {
       icon: FaCode,
@@ -28,7 +44,9 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="min-h-screen bg-black/20 backdrop-blur-sm py-20 px-4 sm:px-6 lg:px-8">
+    <section id="about" className="min-h-screen relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Iridescence Background */}
+      <Iridescence />
       <div className="max-w-7xl mx-auto">
         <motion.h2 
           className="text-4xl font-bold text-center mb-12 text-orange-300"
