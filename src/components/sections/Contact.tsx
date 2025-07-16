@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
@@ -12,6 +12,10 @@ import emailjs from '@emailjs/browser';
 // 5. Replace the placeholder values below with your actual IDs
 
 export default function Contact() {
+  // Initialize EmailJS once when component mounts
+  useEffect(() => {
+    emailjs.init('Mi3TAbAEo5NBH4YC1');
+  }, []);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -24,27 +28,28 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
-      // Initialize EmailJS with your public key
-      emailjs.init('Mi3TAbAEo5NBH4YC1');
-      
       // Send email using EmailJS
       const response = await emailjs.send(
         'service_unjq52s',
         'template_7ti7hmv',
         {
-          from_name: formData.fullName,
-          from_email: formData.email,
-          to_name: 'Yoav',
+          user_name: formData.fullName,
+          user_email: formData.email,
           message: `New contact from ${formData.fullName} (${formData.email})`,
         }
       );
 
-      if (response.status !== 200) throw new Error('Failed to send message');
+      console.log('EmailJS Response:', response);
+      
+      if (response.status !== 200) {
+        throw new Error(`EmailJS returned status: ${response.status}`);
+      }
       
       setSubmitStatus('success');
       setFormData({ fullName: '', email: '' });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending message:', error);
+      console.error('Error details:', error.text || error.message || error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
