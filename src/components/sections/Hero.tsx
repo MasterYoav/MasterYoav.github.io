@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Preload } from '@react-three/drei';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import HeroScene from '../3d/HeroScene';
 
 export default function Hero() {
@@ -31,14 +30,6 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-8"
-            >
-            
-            </motion.div>
             <motion.h1
               className="text-4xl sm:text-6xl font-bold mb-6"
               initial={{ opacity: 0, y: 20 }}

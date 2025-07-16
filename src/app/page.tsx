@@ -9,7 +9,7 @@ import About from '@/components/sections/About';
 import Projects from '@/components/sections/Projects';
 import Skills from '@/components/sections/Skills';
 import Contact from '@/components/sections/Contact';
-import Navigation from '@/components/Navigation';
+import GooeyNav from '@/components/GooeyNav';
 import LoadingScreen from '@/components/LoadingScreen';
 
 
@@ -28,7 +28,7 @@ export default function Home() {
           <LoadingScreen key="loading" />
         ) : (
           <>
-            <Navigation />
+            <GooeyNav />
             <Hero />
             <About />
             <Projects />
