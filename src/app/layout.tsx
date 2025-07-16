@@ -5,36 +5,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Yoav Peretz',
-  description: 'Full-Stack Developer & Creative Technologist - Building innovative digital experiences with code and creativity',
-  keywords: ['portfolio', 'developer', 'full-stack', 'react', 'next.js', 'javascript', 'typescript'],
-  authors: [{ name: 'Yoav' }],
-  creator: 'Yoav',
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://your-portfolio-url.com',
-    title: 'Yoav Peretz',
-    description: 'Full-Stack Developer & Creative Technologist - Building innovative digital experiences',
-    siteName: 'Yoav Portfolio',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Yoav Peretz',
-    description: 'Full-Stack Developer & Creative Technologist',
-    creator: '@your-twitter-handle',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  title: 'Developer Portfolio',
+  description: 'Interactive and modern developer portfolio showcasing projects and skills',
 }
 
 export default function RootLayout({
@@ -44,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} bg-gradient-to-br from-purple-900 via-red-800 to-orange-700 text-white antialiased`}>
+        {children}
+      </body>
     </html>
   )
 }
