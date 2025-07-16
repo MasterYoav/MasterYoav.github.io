@@ -25,16 +25,16 @@ export default function Contact() {
     
     try {
       // Initialize EmailJS with your public key
-      emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your actual public key
+      emailjs.init('Mi3TAbAEo5NBH4YC1');
       
       // Send email using EmailJS
       const response = await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your service ID
-        'YOUR_TEMPLATE_ID', // Replace with your template ID
+        'service_unjq52s',
+        'template_7ti7hmv',
         {
           from_name: formData.fullName,
           from_email: formData.email,
-          to_name: 'Your Name', // Replace with your name
+          to_name: 'Yoav',
           message: `New contact from ${formData.fullName} (${formData.email})`,
         }
       );
