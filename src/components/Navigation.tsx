@@ -44,7 +44,7 @@ export default function Navigation() {
               <motion.a
                 key={item.name}
                 href={item.href}
-                className="text-white/80 hover:text-orange-300 transition-colors duration-300 font-medium"
+                className="text-white/80 hover:text-purple-400 transition-colors duration-300 font-medium"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -81,7 +81,7 @@ export default function Navigation() {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="block text-white/80 hover:text-orange-300 transition-colors duration-300 font-medium py-2"
+                  className="block text-white/80 hover:text-purple-400 transition-colors duration-300 font-medium py-2"
                   onClick={() => setIsOpen(false)}
                   whileHover={{ x: 10 }}
                 >

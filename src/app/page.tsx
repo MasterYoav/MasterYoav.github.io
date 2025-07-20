@@ -11,6 +11,7 @@ import Skills from '@/components/sections/Skills';
 import Contact from '@/components/sections/Contact';
 import DockNav from '@/components/DockNav';
 import LoadingScreen from '@/components/LoadingScreen';
+import ThemeToggle from '@/components/ThemeToggle';
 
 /**
  * Home Page Component
@@ -33,13 +34,19 @@ export default function Home() {
    * Simulates asset loading time with a 2-second delay
    */
   useEffect(() => {
+    // Ensure we start at the top of the page
+    window.scrollTo(0, 0);
+    
     // In a real app, this would wait for actual assets to load
     const timer = setTimeout(() => setIsLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <main className="relative min-h-screen bg-black">
+    <main className="relative min-h-screen">
+      {/* Theme Toggle */}
+      {!isLoading && <ThemeToggle />}
+      
       {/* Main Content */}
       <AnimatePresence mode="wait">
         {isLoading ? (

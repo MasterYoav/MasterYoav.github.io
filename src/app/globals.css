@@ -8,9 +8,14 @@
   }
   
   body {
+    background-color: #ffffff;
+    color: black;
+    min-height: 100vh;
+  }
+  
+  .dark body {
     background-color: #000000;
     color: white;
-    min-height: 100vh;
   }
   
   /* Ensure sections are positioned correctly for backgrounds */

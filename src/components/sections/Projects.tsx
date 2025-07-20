@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PixelCard from '@/components/ui/PixelCard';
-import Silk from '@/components/backgrounds/Silk';
 
 /**
  * Repository interface for GitHub API response
@@ -38,7 +37,7 @@ const featuredProjects = [
  * 
  * Displays a grid of projects using the PixelCard component.
  * Features:
- * - Silk animated background for premium feel
+ * - Projects showcase with GitHub integration
  * - Fetches repositories from GitHub API
  * - Displays featured projects with custom data
  * - Responsive grid layout
@@ -80,8 +79,6 @@ export default function Projects() {
 
   return (
     <section id="projects" className="min-h-screen relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Silk Background */}
-      <Silk />
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
